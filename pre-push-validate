@@ -58,7 +58,7 @@ done
 if [ "$PASS" = false ]; then
   error "\nPush failed: The commits contain files that don't pass eslint."
 else
-	log 'Eslint succeeded, now running flow...\n'
+	log '\nESLint successfull, now running Flow...\n'
 	flow
 fi
 
