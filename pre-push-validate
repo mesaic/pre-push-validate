@@ -7,6 +7,12 @@ RESET="\x1B[0m"
 log() {
   printf "%b" "$GREEN$1$RESET\n"
 }
+clearline() {
+  printf "                                                                                          \r"
+}
+sameline() {
+  printf "%b" "$GREEN$1$RESET\r"
+}
 warn() {
   printf "%b" "$RED$1$RESET\n"
 }
@@ -40,14 +46,16 @@ do
   if [ -f ./node_modules/.bin/eslint_d ]; then
     # quiet: Report errors only so that the fact that .eslintignore is being used and
     # thus triggers a warning (-.-) doesn't fail the build.
-    ./node_modules/.bin/eslint_d --cache --max-warnings 0 --quiet "$FILE"
+    ./node_modules/.bin/eslint_d --cache --max-warnings 0 --quiet "$FILE" &>/dev/null
   else
-    ./node_modules/.bin/eslint --cache --max-warnings 0 --quiet "$FILE"
+    ./node_modules/.bin/eslint --cache --max-warnings 0 --quiet "$FILE" &>/dev/null
   fi
 
   if [[ "$?" == 0 ]]; then
-    log "  ✓ $FILE"
+    clearline
+    sameline "  ✓ $FILE"
   else
+    clearline
     warn "  ✘ $FILE"
     PASS=false
   fi
