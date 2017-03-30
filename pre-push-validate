@@ -63,7 +63,7 @@ done
 
 
 
-set -x
+set -e
 if [ "$PASS" = false ]; then
   error "\nPush failed: The commits contain files that don't pass eslint."
   exit 1
