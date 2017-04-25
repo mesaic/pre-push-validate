@@ -41,6 +41,8 @@ PASS=true
 
 log 'Linting committed files...\n'
 
+ESLINTD_PREVIOUS_STATE=$(./node_modules/.bin/eslint_d status)
+
 for FILE in $COMMITED_FILES
 do
   if [ -f ./node_modules/.bin/eslint_d ]; then
@@ -61,7 +63,9 @@ do
   fi
 done
 
-
+if [ "$ESLINTD_PREVIOUS_STATE" != "Running" ]; then
+  ./node_modules/.bin/eslint_d stop
+fi
 
 set -e
 if [ "$PASS" = false ]; then
