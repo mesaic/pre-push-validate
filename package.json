@@ -1,7 +1,7 @@
 {
-  "name": "pre-push-validate",
+  "name": "@mesaic/pre-push-validate",
   "version": "1.0.0",
-	"bin": "./pre-push-validate",
+  "bin": "./pre-push-validate",
   "description": "Pre-push validation hook script used for Mesaic projects",
   "author": "Mesaic",
   "license": "MIT"
